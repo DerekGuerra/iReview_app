@@ -31,4 +31,15 @@ class Api::MoviesController < ApplicationController
 
   end
 
+  def reviews
+
+    movie_id = params[:movie_id]
+
+    @response = HTTP.get("https://api.themoviedb.org/3/movie/#{movie_id}/reviews?api_key=5ed1739fc1aeafad4e5aeb4bafef0568&language=en-US&page=1")
+
+    render json: @response.parse
+
+  end
+
+
 end

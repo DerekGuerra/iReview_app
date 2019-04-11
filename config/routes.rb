@@ -13,5 +13,7 @@ Rails.application.routes.draw do
     get '/movies/search/:query' => 'movies#search'
     #show movie details
     get 'movies/:movie_id' => 'movies#show'
+    #get movie reviews
+    get 'movies/reviews/:movie_id' => 'movies#reviews'
   end
 end
