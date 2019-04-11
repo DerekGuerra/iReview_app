@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   # end
 
   namespace :api do
+    #show all movies and search for movie
     get '/movies' => 'movies#index'
+    get '/movies/search' => 'movies#search'
+    #show movie details
+    get 'movies/:movie_id' => 'movies#show'
   end
 end
