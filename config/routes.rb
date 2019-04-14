@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   namespace :api do
     #show all movies and search for movie
     get '/movies' => 'movies#index'
-    get '/movies/search/:query' => 'movies#search'
+    get '/search_movies/:query' => 'movies#search'
     #show movie details
-    get 'movies/:movie_id' => 'movies#show'
+    get '/movies/:movie_id' => 'movies#show'
     #get movie reviews
-    get 'movies/reviews/:movie_id' => 'movies#reviews'
+    get '/movies/:movie_id/reviews' => 'movies#reviews'
+    #make movie review 
+    post '/movies' => 'movies#create' #curently working on--
   end
 end

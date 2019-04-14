@@ -1,44 +1,42 @@
 class Api::MoviesController < ApplicationController
 
   def index 
-
-    response = HTTP.get("https://api.themoviedb.org/3/discover/movie?api_key=#{ENV["API_KEY"]}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=falseSe_adult=false")
-
-    @movies = response.parse
- 
+    Tmdb::Api.key("#{ENV["API_KEY"]}")
+    response = Tmdb::Discover.movie
+    @movies = response
+    
     render 'index.json.jbuilder'
   end
 
   def search
-
-    search = params[:query]
-
-    response = HTTP.get("https://api.themoviedb.org/3/search/movie?api_key=#{ENV["API_KEY"]}&language=en-US&query=#{search}&include_adult=false")
-    
-    @movies = response.parse
+    Tmdb::Api.key("#{ENV["API_KEY"]}")
+    response = Tmdb::Search.movie(params[:query])
+    @movies = response
 
     render 'index.json.jbuilder'
-
   end
 
   def show
-
+    Tmdb::Api.key("#{ENV["API_KEY"]}")
     movie_id = params[:movie_id]
+    response = Tmdb::Movie.detail(movie_id)
+    @movie = response
 
-    @response = HTTP.get("https://api.themoviedb.org/3/movie/#{movie_id}?api_key=5ed1739fc1aeafad4e5aeb4bafef0568&language=en-US")
-
-    render json: @response.parse
-
+    render 'show.json.jbuilder'
   end
 
   def reviews
-
     movie_id = params[:movie_id]
+    @response = Tmdb::Movie.reviews(movie_id)
+    render json: @response
+  end
 
-    @response = HTTP.get("https://api.themoviedb.org/3/movie/#{movie_id}/reviews?api_key=5ed1739fc1aeafad4e5aeb4bafef0568&language=en-US&page=1")
+  def create
+    movie_id = params[:movie_id]
+    rating = params[:value]
+    @response = HTTP.post("https://api.themoviedb.org/3/movie/557/rating?api_key=#{ENV["API_KEY"]}&guest_session_id=0e1041dfef476fb7188e5555eb82c378",params:{value: rating})
 
     render json: @response.parse
-
   end
 
 
