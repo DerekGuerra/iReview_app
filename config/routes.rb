@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     #Users
     get '/users' => 'users#index'
     #create User
+    post '/users' => 'users#create'
     
   end
 end
