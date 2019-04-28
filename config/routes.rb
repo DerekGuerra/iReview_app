@@ -16,6 +16,15 @@ Rails.application.routes.draw do
     #get movie reviews
     get '/movies/:movie_id/reviews' => 'movies#reviews'
     #make movie review 
-    post '/movies' => 'movies#create' #curently working on--
+    post '/movies' => 'movies#create' 
+
+    #Theatres
+    get '/search_theatres/:city' => 'theatres#search'
+
+    #Users
+    get '/users' => 'users#index'
+    #create User
+    
   end
 end
+
