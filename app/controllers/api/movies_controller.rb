@@ -1,11 +1,15 @@
 class Api::MoviesController < ApplicationController
-
-  def index 
+  before_action :authenticate_user
+  
+  def index
     Tmdb::Api.key("#{ENV["API_KEY"]}")
-    response = Tmdb::Discover.movie
-    @movies = response
-    
-    render 'index.json.jbuilder'
+    if current_user
+      response = Tmdb::Discover.movie(page: params[:page])
+      @movies = response
+      render 'index.json.jbuilder'
+    else
+      render json: {message: 'Not logged in'}
+    end
   end
 
   def search
