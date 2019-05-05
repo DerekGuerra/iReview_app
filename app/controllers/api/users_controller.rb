@@ -1,8 +1,8 @@
 class Api::UsersController < ApplicationController
   def index
-    @response = HTTP.get("https://api.themoviedb.org/3/account?api_key=#{ENV["API_KEY"]}&session_id=97e2e4b64a8a618712bdefd2d940ce8514efeeba")
-
-    render json: @response.parse
+  @reviews = current_user.reviews
+  @user = current_user
+  render 'index.json.jbuilder'
   end
 
   def create

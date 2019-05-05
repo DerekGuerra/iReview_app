@@ -11,3 +11,7 @@ json.vote_count @movie["vote_count"]
 json.vote_average @movie["vote_average"]
 json.popularity @movie["popularity"]
 json.revenue @movie["revenue"]
+json.reviews @reviews["results"].each do |result|
+  json.author result["author"]
+  json.content result["content"]
+end

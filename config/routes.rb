@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     #show all movies and search for movie
-    get '/movies(:page)' => 'movies#index'
+    get '/movies' => 'movies#index'
     get '/search_movies/:query' => 'movies#search'
     #show movie details
     get '/movies/:movie_id' => 'movies#show'
