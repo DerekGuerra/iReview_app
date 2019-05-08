@@ -16,7 +16,11 @@ Rails.application.routes.draw do
     #get movie reviews
     get '/movies/:movie_id/reviews' => 'movies#reviews'
     #make movie review 
-    post '/movies' => 'movies#create' 
+    post '/movies' => 'movies#create'
+    #show reviews
+    get '/users/:id' => 'users#ShowReview'
+    #delete review
+    delete '/users/:id' => 'users#destroy'
     #Theatres
     get '/search_theatres/:city' => 'theatres#search'
     #Users

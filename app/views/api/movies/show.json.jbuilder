@@ -15,3 +15,6 @@ json.reviews @reviews["results"].each do |result|
   json.author result["author"]
   json.content result["content"]
 end
+json.genres @movie["genres"].each do |genre|
+  json.genre genre.name
+end

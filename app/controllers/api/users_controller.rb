@@ -20,4 +20,19 @@ class Api::UsersController < ApplicationController
       render json: {errors: user.errors.full_messages}, status: :bad_request
     end
   end
+
+  def ShowReview
+    the_id = params[:id]
+    @review = Review.find_by(id: the_id)
+    render 'show.json.jbuilder'
+  end
+
+  def destroy
+    #find review
+    the_id = params[:id]
+    @review = Review.find_by(id: the_id)
+    #delete review
+    @review.destroy
+    render json: {message: "Deleted"}
+  end
 end

@@ -3,7 +3,7 @@ class Api::MoviesController < ApplicationController
 
   def index
     Tmdb::Api.key("#{ENV["API_KEY"]}")
-      response = Tmdb::Discover.movie
+      response = Tmdb::Discover.movie(page: params[:page])
       @movies = response 
       render 'index.json.jbuilder'
   end
@@ -52,6 +52,5 @@ class Api::MoviesController < ApplicationController
     # comment =  params[:comment]
 
   end
-
 
 end
