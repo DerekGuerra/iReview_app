@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     #show all movies and search for movie
     get '/movies' => 'movies#index'
     get '/search_movies/:query' => 'movies#search'
+    #movies genres
+    get '/movies/genres/' => 'movies#genres'
+    #particular genre
+    get '/movies/genres/:genre_id' => 'movies#genre_show'
     #show movie details
     get '/movies/:movie_id' => 'movies#show'
     #get movie reviews

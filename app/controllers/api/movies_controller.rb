@@ -53,4 +53,16 @@ class Api::MoviesController < ApplicationController
 
   end
 
+  def genres
+    Tmdb::Api.key("#{ENV["API_KEY"]}")
+    @genres = Tmdb::Genre.movie_list
+    render 'genres.json.jbuilder' 
+  end
+
+  def genre_show
+    genre_id = Tmdb::Genre.movies(params[:genre_id])
+    @genre = genre_id
+    render 'genre_show.json.jbuilder'
+  end
+
 end
